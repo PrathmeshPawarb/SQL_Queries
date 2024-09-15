@@ -1,0 +1,109 @@
+____________________________________________________SQL Quaries Pratice_______________________________________________________________
+
+
+
+1) Scenario 1:
+You have a table called Employees with the following columns:
+
+EmployeeID (int)
+FirstName (varchar)
+LastName (varchar)
+Department (varchar)
+Salary (decimal)
+Question 1: Write a query to retrieve the top 5 employees with the highest salary.
+
+
+ANS ===
+
+SELECT EmployeeID , FirstName, LastName, Department, Salary
+FROM Employees
+ORDER BY Salary DESC
+LIMIT 5;
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Scenario 2:
+You have a table called Sales with the following columns:
+
+SaleID (int)
+CustomerID (int)
+Amount (decimal)
+SaleDate (date)
+Question 2: Write a query to find the total sales amount for each customer, but only for sales made in the year 2023.
+
+
+ANS ==
+
+SELECT CustomerID, SUM(Amount) AS TotalSales
+FROM Sales
+WHERE YEAR(SaleDate) = 2023
+GROUP BY CustomerID;
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Scenario 3:
+You have two tables: Orders and Customers.
+
+The Orders table has the columns OrderID, CustomerID, OrderDate, and TotalAmount.
+The Customers table has the columns CustomerID, CustomerName, and ContactEmail.
+Question 3: Write a query to retrieve all customers who placed an order in August 2023, along with their order details.
+
+ANS ==
+
+SELECT 0.CustomerID, c.CustomerName,  0.OrderID, 0.OrderDate, 0.TotalAmount, c.ContactEmail
+FROM Orders o
+JOIN Customers c ON o.CustomerID = c.CustomerID
+WHERE MONTH(o.OrderDate) = 8 AND YEAR(0.OrderDate) = 2023;
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Scenario 4:
+You have a table called Products with the following columns:
+
+ProductID (int)
+ProductName (varchar)
+Category (varchar)
+Price (decimal)
+StockQuantity (int)
+Question 4: Write a query to retrieve the names of products that are out of stock (i.e., StockQuantity is 0).
+
+ANS == 
+
+SELECT ProductName 
+FROM Products
+WHERE StockQuantity = 0;
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Scenario 5:
+You have a table called Employees and another table called Departments. The columns are as follows:
+
+Employees: EmployeeID, FirstName, LastName, DepartmentID
+Departments: DepartmentID, DepartmentName
+Question 5: Write a query to get the full names of all employees and their respective department names.
+
+ANS ==
+
+SELECT e.FirstName, e.LastName, d.DepartmentName
+FROM Employees e
+JOIN Department d ON e.DepartmentID = d.DepartmentID;
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+Scenario 6:
+You have a Sales table with the following columns:
+
+SaleID (int)
+CustomerID (int)
+Amount (decimal)
+SaleDate (date)
+Question 6: Write a query to find the total sales amount for all customers who made purchases in the first quarter (January to March) of 2023.
+
+
+ANS == 
+
+SELECT SUM(Amount) AS TotalSales, MONTH(SaleDate)
+FROM Sales
+WHERE MONTH(SaleDate) BETWEEN 1 AND 3 AND YEAR(SaleDate) = 2023
+GROUP BY MONTH(SaleDate);
